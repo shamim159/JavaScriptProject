@@ -9,33 +9,32 @@ function getPlayerChoice() {
   prompt("please input either: Rock, Paper or Scissors")
 }
 
+
+let playRound = () => {
+  const playerSelection = "Scissors"// selected a random array. seems to work on the console
+  const computerSelection = getComputerChoice();//runs this function-random generation
+  let result = "";
 //conditions
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === "Rock" && computerSelection === "Scissors") {
-    return "You Win! Rock beats Scissors";
-  } else if (playerSelection === "Scissors" && computerSelection === "Paper"){
-    return "You Win! Scissors beats Paper";
-  } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-    return "You Win! Paper beats Rock ";
-  } else if (playerSelection === "Rock" && computerSelection === "paper") {
-    return "You Lose! Paper beats Rock";
-  } else if (playerSelection === "Paper" && computerSelection === "Scissors"){
-    return "You Lose! Scissors beats paper";
-  } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-    return "You Lose! Rock Beats Scissors";
-  } else if (playerSelection == computerSelection) {
-    return "Its a draw";
-  }else{
-    return "Invalid Choice, try again!"
-  } 
+if (playerSelection === computerSelection) {
+  result = "Its a Draw!";
+}
+else{
+  switch(playerSelection){//changed to switch method for cleaner code
+    case "Rock":
+      result = (computerSelection === "Scissors") ? "You Win!" : "You Lose!";
+      break;
+    case "Paper":
+      result = (computerSelection === "Rock") ? "You Win!" : "You Lose!";
+      break;
+    case "Scissors":
+      result = (computerSelection === "Paper") ? "You Win!" : "You Lose!";
+      break;
+  }
+}
+console.log(result)
 }
 
-const playerSelection = "Scissors"// selected a random array. seems to work on th console
-
-const computerSelection = getComputerChoice();//runs this function
-
-
-console.log(playRound(playerSelection, computerSelection)); //intiates on the console with player selection scissors
+playRound(); //intiates on the console with player selection scissors
 
 
 
