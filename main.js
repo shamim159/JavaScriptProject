@@ -2,10 +2,17 @@ const body = document.querySelector('body');//selects the target
 const rockButton = document.createElement('button');
 const paperButton = document.createElement('button');
 const scissorsButton = document.createElement('button');
+const scoreContainer = document.createElement('div');
+const roundSelection = document.createElement('div')
+const roundWinner = document.createElement('div')
+const winner = document.createElement('h1');
+const leagueWinner = document.createElement('h1');
+
 
 rockButton.textContent = "rock";
 paperButton.textContent = "paper";
 scissorsButton.textContent = "scissors";
+
 
 
 
@@ -84,42 +91,44 @@ if (playerSelection == computerSelection) {
     
 
     
+    console.log("WELCOME to RPS")
     let scorePlayer = 0;
     let scoreComputer = 0;
     function game() {
-      console.log("WELCOME to RPS")
         const playerSelection = getPlayerChoice;//runs player choice and computer choice below and stores in variables.
         const computerSelection = getComputerChoice();
-      console.log(`player: ${playerSelection} --VS-- computer: ${computerSelection}`);// logs the scores
-    
+      roundSelection.textContent = `player: ${playerSelection} --VS-- computer: ${computerSelection}`;// logs the scores
+      roundWinner.textContent = 
+      body.appendChild(roundSelection)
       if(playRound(playerSelection, computerSelection) == "You Win! ") {
         scorePlayer++;//adds scores by 1 and stores in the above variable to present to console
       }else if(playRound(playerSelection, computerSelection) == "You Lose! ") {
         scoreComputer++;
       }
       if(playRound(playerSelection, computerSelection) == "You Win! ") {//adds the you win or you lose. 
-        console.log("You Win! ");
+        roundWinner.textContent =  "You Win! ";
+        body.appendChild(roundWinner);
       }else if(playRound(playerSelection, computerSelection) == "You Lose! ") {
-        console.log("You Lose! ");
+        roundWinner.textContent =  "You Lose! ";
+        body.appendChild(roundWinner);
       }else{
-        console.log("Tie breaker!");
+        roundWinner.textContent = "Tie! ";
+        body.appendChild(roundWinner);
       }
-      console.log("---------------------");
-      console.log(scorePlayer)
-      console.log(scoreComputer)
+      scoreContainer.textContent = `YOU: ${scorePlayer} COMPUTER: ${scoreComputer}`;
+      body.appendChild(scoreContainer)
+
+      
+      body.appendChild(winner)
       
       if(scoreComputer === 5){
-        console.log("GAME OVER : COMPUTER WINS")
+        leagueWinner.textContent = "GAME OVER : COMPUTER WINS";
+        body.appendChild(leagueWinner)
       }else if(scorePlayer === 5){
-        console.log("WINNER WINNER CHICKEN DINNER!")
-      }else{
-        "WE HAVE A TIE!"
-      }
-      
-      
-    }
-    
-    
+        leagueWinner.textContent = "WINNER WINNER CHICKEN DINNER!";
+        body.appendChild(leagueWinner)
+    } 
+  }
     
     /*console.log("Game Over")
     if(scorePlayer > scoreComputer) {
